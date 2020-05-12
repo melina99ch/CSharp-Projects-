@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _06_Sum_Reversed_Numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+
+            List<int> nums = input.Split(' ').Select(int.Parse).ToList();
+            string newNum = "";
+
+            for (int i = 0; i < nums.Count; i++)
+            {
+                int curr = nums[i];
+                for (int j = 0; j < nums[i].ToString().Length; j++)
+                {
+                    int lastDigit = curr % 10;
+                    newNum += lastDigit.ToString();
+                    curr = curr / 10;
+                }
+                nums[i] = int.Parse(newNum);
+                newNum = "";
+            }
+
+            int sum = 0;
+            for (int i = 0; i < nums.Count; i++)
+            {
+                sum += nums[i];
+            }
+            Console.WriteLine(sum);
+        }
+    }
+}
